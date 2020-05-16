@@ -1,1 +1,4 @@
 <h3><%= @work.title %></h3>
+<ul>
+  <li> <%= link_to "Edit #{@work.title}", edit_work_path(@work)%></li>
+</ul>
