@@ -11,10 +11,16 @@
 
   <body>
     <header>
+      <h2>
+        <%= link_to "Media Ranker", root_path %> |
+        <%= "Ranking the Best of Everything"%>
+      </h2>
+
       <nav>
-        <%= link_to "Home", root_path %>
-        <%= link_to "Add New", new_work_path %>
+        <%= "View top media" %>        
         <%= link_to "View All", works_path %>
+        <%= link_to "Add a new work", new_work_path %>
+        <%= "View all users" %>
 
         <% if session[:user_id] %>
           <%= link_to "Logout", logout_path, method: :post %>
@@ -23,6 +29,7 @@
         <% end %>
       </nav>
     </header>
+
     <main>
       <section class="flash-msg__section">
         <% flash.each do |name, message| %>
@@ -34,5 +41,5 @@
       <%= yield %>
     </main>
   </body>
-  
+
 </html>
