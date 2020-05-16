@@ -16,13 +16,20 @@
         <%= link_to "Add New", new_work_path %>
 
         <% if session[:user_id] %>
-          <li><%= link_to "Logout", logout_path, method: :post %></li>
+          <%= link_to "Logout", logout_path, method: :post %>
         <% else %>
-          <li><%= link_to "Log in", login_path %></li>
+          <%= link_to "Log in", login_path %>
         <% end %>
       </nav>
     </header>
     <main>
+      <section class="flash-msg__section">
+        <% flash.each do |name, message| %>
+          <strong class="<%= name %>">
+            <%= message %>
+          </strong>
+        <% end %>
+      </section>
       <%= yield %>
     </main>
   </body>
