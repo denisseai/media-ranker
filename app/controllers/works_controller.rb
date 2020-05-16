@@ -25,12 +25,36 @@ class WorksController < ApplicationController
       return
     else
       flash.now[:failure] = "Could not add #{@work.title}"
-      render: new, status: :bad_request
+      render :new, status: :bad_request
       return
     end
   end
-  private
 
+  def edit
+    @work = Work.find_by(id: params[:id])
+    if @work.nil?
+      redirect_to works_path
+      return
+    end
+  end
+
+  def update
+    @work = Work.find_by(id: params[:id])
+    if @work.nil?
+      head :not_found
+      return
+    elsif @work.update(driver_params)
+      redirect_to work_path(@work.id)
+      flash[:success] = "#{@work.title} was updated"
+      return
+    else
+      flash.now[:failure] = "Unable to update #{@work.title}"
+      render :edit
+      return
+    end
+  end
+
+  private
   def work_params
     params.require(:work).permit(:title, :creator, :publication_year, :description, :category)
     return
