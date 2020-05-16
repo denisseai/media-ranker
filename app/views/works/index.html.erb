@@ -1,4 +1,5 @@
 <h3>All Works</h3>
+
 <section>
   <h3>Albums</h3>
 
@@ -57,4 +58,34 @@
 				</tr>
 			<% end %>
 	</table>
+
+  <section>
+  <h3>Movies</h3>
+
+	<table>
+		<tr>
+			<th>Title</th>
+			<th>Creator</th>
+			<th>Publication Year</th>
+			<th>Description</th>
+		</tr>
+
+			<% @works.each do |movie| %>
+				<tr>
+					<td>
+						<%= link_to movie.title, work_path(movie) %>
+					</td>
+					<td>
+						<%= movie.creator %>
+					</td>
+					<td>
+						<%= movie.publication_year %>
+					</td>
+					<td>
+						<%= movie.description %>
+					</td>
+				</tr>
+			<% end %>
+	</table>
+</section>
 </section>

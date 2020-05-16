@@ -23,4 +23,8 @@ class Work < ApplicationRecord
     return Work.all.sample
   end
 
+  def self.top_movies
+    movies = Work.where(category: "movie")
+    return movies.sample(10)
+  end
 end
