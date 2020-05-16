@@ -54,6 +54,20 @@ class WorksController < ApplicationController
     end
   end
 
+  def destroy
+    @work = Work.find_by(id: params[:id])
+    if @work.nil?
+      flash[:failure] = "Unable to delete #{@work.title}"
+      redirect_to works_path
+      return
+    end
+
+    @work.destroy
+    flash[:success] = "#{@work.title} was deleted"
+    redirect_to works_path
+    return
+  end
+
   private
   def work_params
     params.require(:work).permit(:title, :creator, :publication_year, :description, :category)

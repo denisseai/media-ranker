@@ -1,4 +1,5 @@
 <h3><%= @work.title %></h3>
 <ul>
   <li> <%= link_to "Edit #{@work.title}", edit_work_path(@work)%></li>
+  <li> <%= link_to "Delete", work_path(@work), method: :delete, data: { confirm: "Are you sure?" } %></li>
 </ul>
