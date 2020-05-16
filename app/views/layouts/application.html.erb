@@ -14,6 +14,7 @@
       <nav>
         <%= link_to "Home", root_path %>
         <%= link_to "Add New", new_work_path %>
+        <%= link_to "View All", works_path %>
 
         <% if session[:user_id] %>
           <%= link_to "Logout", logout_path, method: :post %>
