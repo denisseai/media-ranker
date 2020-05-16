@@ -13,6 +13,8 @@
     <header>
       <nav>
         <%= link_to "Home", root_path %>
+        <%= link_to "Add New", new_work_path %>
+
         <% if session[:user_id] %>
           <li><%= link_to "Logout", logout_path, method: :post %></li>
         <% else %>
