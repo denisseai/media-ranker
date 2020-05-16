@@ -1,0 +1,60 @@
+<h3>All Works</h3>
+<section>
+  <h3>Albums</h3>
+
+	<table>
+		<tr>
+			<th>Title</th>
+			<th>Creator</th>
+			<th>Publication Year</th>
+			<th>Description</th>
+		</tr>
+
+			<% @works.each do |album| %>
+				<tr>
+					<td>
+						<%= album.title %>
+					</td>
+					<td>
+						<%= album.creator %>
+					</td>
+					<td>
+						<%= album.publication_year %>
+					</td>
+					<td>
+						<%= album.description %>
+					</td>
+				</tr>
+			<% end %>
+	</table>
+</section>
+
+<section>
+  <h3>Books</h3>
+
+	<table>
+		<tr>
+			<th>Title</th>
+			<th>Creator</th>
+			<th>Publication Year</th>
+			<th>Description</th>
+		</tr>
+
+			<% @works.each do |book| %>
+				<tr>
+					<td>
+						<%= book.title %>
+					</td>
+					<td>
+						<%= book.creator %>
+					</td>
+					<td>
+						<%= book.publication_year %>
+					</td>
+					<td>
+						<%= book.description %>
+					</td>
+				</tr>
+			<% end %>
+	</table>
+</section>
