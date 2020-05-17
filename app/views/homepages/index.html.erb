@@ -1,11 +1,12 @@
 <section class="spotlight">
-  <h2>
-    Media Spotlight: <%= link_to Work.top_media.title %>
-    by <%= Work.top_media.creator %>
-  <h2>
-  
-  <h6><%= "# votes" %> <%= Work.top_media.description %></h6>
-
+	<% if Work.top_media != nil %>
+		<h2>Media Spotlight: <%= link_to Work.top_media.title %>
+			by <%= Work.top_media.creator %><h2>
+		<h6><%= "# votes" %> <%= Work.top_media.description %></h6>
+	
+	<% else %>
+		<h2>Nothing to display</h2>
+	<% end %>
 </section>
 
 <section class="top-ten__container">
