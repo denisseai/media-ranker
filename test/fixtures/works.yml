@@ -1,18 +1,18 @@
 wake_up_cup:
-category: book
-title: Wake-up Cup
-creator: Bobbie Aufderhar
-publication_year: 1946
-description: Eaque cum architecto et.
+  category: book
+  title: Wake-up Cup
+  creator: Bobbie Aufderhar
+  publication_year: 1946
+  description: Eaque cum architecto et.
 captain_select:
-category: album
-title: The Captain's Select
-creator: Ms. Arlen Rogahn
-publication_year: 1981
-description: Quis harum soluta vel.
+  category: album
+  title: The Captain's Select
+  creator: Ms. Arlen Rogahn
+  publication_year: 1981
+  description: Quis harum soluta vel.
 guardians:
-category: movie
-title: Guardians of the Galaxy
-creator: James Gunn
-publication_year: 2014
-description: A group of intergalactic criminals are forced to work together to stop a fanatical warrior from taking control of the universe.
+  category: movie
+  title: Guardians of the Galaxy
+  creator: James Gunn
+  publication_year: 2014
+  description: A group of intergalactic criminals are forced to work together to stop a fanatical warrior from taking control of the universe.

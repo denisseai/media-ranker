@@ -17,25 +17,26 @@
       </h2>
 
       <nav>
-        <%= link_to "View top media", root_path %>        
-        <%= link_to "View All", works_path %>
-        <%= link_to "Add a new work", new_work_path %>
-        <%= "View all users" %>
-
+      <ul>
+        <li><%= link_to "View top media", root_path %></li>        
+        <li><%= link_to "View All", works_path %></li> 
+        <li><%= link_to "Add a new work", new_work_path %></li> 
+        <li><%= "View all users" %></li> 
         <% if session[:user_id] %>
-          <%= link_to "Logout", logout_path, method: :post %>
+          <li><%= link_to "Logout", logout_path, method: :post %></li>
         <% else %>
-          <%= link_to "Log in", login_path %>
+          <li><%= link_to "Log in", login_path %></li>
         <% end %>
+      </ul>
       </nav>
     </header>
 
     <main>
       <section class="flash-msg__section">
         <% flash.each do |name, message| %>
-          <strong class="<%= name %>">
+          <div class="<%= name %>">
             <%= message %>
-          </strong>
+          </div>
         <% end %>
       </section>
       <%= yield %>
