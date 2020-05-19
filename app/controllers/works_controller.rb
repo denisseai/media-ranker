@@ -25,6 +25,13 @@ class WorksController < ApplicationController
       redirect_to work_path(@work.id)
       return
     else
+      if @work.errors.messages[:title].include?("can't be blank")
+        flash.now[:errors] = "can not create title if nil"
+      else  
+        existing_work = Work.find_by(title: @work.title) 
+        flash.now[:errors] = "#{existing_work.title} already existis"
+      end 
+      
       flash.now[:failure] = "Could not add #{@work.title}"
       render :new, status: :bad_request
       return

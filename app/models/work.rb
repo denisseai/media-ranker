@@ -9,8 +9,9 @@ class Work < ApplicationRecord
   #   return unique_categories
   # end
 
-  validates :category, :title, :creator, :publication_year, :description, presence: true
-
+  validates :category, :creator, :publication_year, :description, presence: true
+  validates :title, presence: true, uniqueness: true
+  
   def self.top_books
     books = Work.where(category: "book")
     return books.sample(10)
