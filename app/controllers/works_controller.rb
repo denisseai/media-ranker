@@ -26,10 +26,9 @@ class WorksController < ApplicationController
       return
     else
       if @work.errors.messages[:title].include?("can't be blank")
-        flash.now[:errors] = "can not create title if nil"
       else  
         existing_work = Work.find_by(title: @work.title) 
-        flash.now[:errors] = "#{existing_work.title} already existis"
+        flash.now[:error] = "#{existing_work.title} already existis"
       end 
       
       flash.now[:failure] = "Could not add #{@work.title}"
@@ -57,7 +56,7 @@ class WorksController < ApplicationController
       return
     else
       flash.now[:failure] = "Unable to update #{@work.title}"
-      render :edit
+      render :edit, status: :bad_request
       return
     end
   end

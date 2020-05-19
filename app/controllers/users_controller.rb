@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    user = User.all
+    @users = User.all
   end
 
   def show
@@ -12,14 +12,13 @@ class UsersController < ApplicationController
   end
 
   def login_form
-    user = User.new
+    @user = User.new
   end
 
   def login
     user = User.find_by(username: params[:user][:username])
 
     if user.nil?
-      date = Time.now
       user = User.new(username: params[:user][:username])
       if !user.save
         flash[:error] = "Unable to login"
