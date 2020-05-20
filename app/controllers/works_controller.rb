@@ -49,7 +49,6 @@ class WorksController < ApplicationController
   end
 
   private
-
   def find_work
     work_id = params[:id].to_i
     @work = Work.find_by(id: work_id)

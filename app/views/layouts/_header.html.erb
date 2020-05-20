@@ -19,7 +19,6 @@
         </li>
       </ul>
       <ul class="nav app-header__user-nav-container">
-      <%# if there is a user already logged in -> else show different buttons%>
       <% current_user = User.find_by(id: session[:user_id]) %>
       <% if current_user %>
         <li class="nav-item app-header__nav_item">
