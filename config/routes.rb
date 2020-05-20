@@ -1,14 +1,14 @@
 # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
-  root to: 'homepages#index' 
-
-  resources :works
+  resources :works do
+    get '/upvote', to: "votes#upvote", as: 'upvote'
+  end
   resources :users
-  
+
   get "/login", to: "users#login_form", as: "login"
   post "/login", to: "users#login"
+  post "/logout", to: "users#logout"
 
-  post "/logout", to: "users#logout", as: "logout"
-  
-  get "/users/current", to: "users#current", as: "current_user"
+  get '/homepages', to: 'homepages#index', as: 'homepages'
+  root to: 'homepages#index'
 end

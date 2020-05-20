@@ -1,17 +1,11 @@
 class WorksController < ApplicationController
+  before_action :find_work, only: [:show, :edit, :update, :destroy]
   def index
-    #@works = Work.all
-    @albums = Work.where(category: 'album')
-    @books = Work.where(category: 'book')
-    @movies = Work.where(category: 'movie')
+    @works = Work.all    
   end
 
   def show
-    @work = Work.find_by(id: params[:id])
-    if @work.nil?
-      head :not_found
-      return
-    end
+    check_work
   end
 
   def new
@@ -21,64 +15,54 @@ class WorksController < ApplicationController
   def create
     @work = Work.new(work_params)
     if @work.save
-      flash[:success] = "#{@work.title} was added"
-      redirect_to work_path(@work.id)
-      return
+      flash[:success] = "Successfully created #{@work.category} #{@work.id}"
+      redirect_to work_path(id: @work.id)
     else
-      if @work.errors.messages[:title].include?("can't be blank")
-      else  
-        existing_work = Work.find_by(title: @work.title) 
-        flash.now[:error] = "#{existing_work.title} already existis"
-      end 
-      
-      flash.now[:failure] = "Could not add #{@work.title}"
+      flash.now[:warning] = "A problem occurred: Could not create"
+      flash.now[:message] = @work.errors.full_messages[0]
       render :new, status: :bad_request
       return
     end
   end
 
   def edit
-    @work = Work.find_by(id: params[:id])
-    if @work.nil?
-      redirect_to works_path
-      return
-    end
+    check_work
   end
 
   def update
-    @work = Work.find_by(id: params[:id])
-    if @work.nil?
-      head :not_found
-      return
-    elsif @work.update(driver_params)
-      redirect_to work_path(@work.id)
-      flash[:success] = "#{@work.title} was updated"
-      return
+    check_work
+    if @work.update(work_params)
+      flash[:success] = "Successfully updated #{@work.category} #{@work.id}"
+      redirect_to work_path(id: @work.id)
     else
-      flash.now[:failure] = "Unable to update #{@work.title}"
+      flash.now[:warning] = "Unsuccessfull update of #{@work.title}"
       render :edit, status: :bad_request
       return
     end
   end
 
   def destroy
-    @work = Work.find_by(id: params[:id])
-    if @work.nil?
-      flash[:failure] = "Unable to delete #{@work.title}"
-      redirect_to works_path
-      return
+    if @work.destroy
+      flash[:success] = "Successfully destroyed #{@work.category} #{@work.id}"
+      redirect_to root_path
     end
-
-    @work.destroy
-    flash[:success] = "#{@work.title} was deleted"
-    redirect_to works_path
-    return
   end
 
   private
-  def work_params
-    params.require(:work).permit(:title, :creator, :publication_year, :description, :category)
-    return
+
+  def find_work
+    work_id = params[:id].to_i
+    @work = Work.find_by(id: work_id)
   end
 
+  def check_work
+    if @work.nil?
+      redirect_to works_path, notice: 'Work not found'
+      return
+    end
+  end
+
+  def work_params
+    return params.require(:work).permit(:title, :category, :creator, :publication_year, :description)
+  end
 end

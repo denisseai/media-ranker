@@ -1,59 +1,23 @@
-<section class="spotlight">
-	<% if Work.top_media != nil %>
-		<h2>Media Spotlight: <%= link_to Work.top_media.title %>
-			by <%= Work.top_media.creator %><h2>
-		<h6><%= "# votes" %> <%= Work.top_media.description %></h6>
-	
-	<% else %>
-		<h2>Nothing to display</h2>
-	<% end %>
-</section>
-
-<section class="top-ten__container">
-
-	<section class="top-ten__list-container">
-		<h2 class="top-ten__container">Top Movies</h2>
-    	<ul class="list-group top-ten__list">
-			<% Work.top_movies.each do |work| %>
-			<li class="list-group-item">
-				<h4>
-					<%= link_to work.title, work_path(work.id) %>
-					<small class="top-ten__creator">by <%= work.creator %></small>
-				</h4>
-				<p># votes</p>
-			</li>
-			<% end %>
-		</ul>
+<main> 
+  <section class="spotlight">
+    <h2 class="spotlight__header">
+      <span class="spotlight__header--prefix">Media Spotlight:</span>
+        <%= link_to @spotlight.title, work_path(@spotlight.id), class:"spotlight__link-to" %> by 
+        <%= @spotlight.creator %>
+    </h2>
+    <p class="spotlight__description">
+      <%= pluralize @spotlight.votes.count, "vote" %> - <%= @spotlight.description %> 
+    </p>
   </section>
-
-	<section class="top-ten__list-container">
-		<h2 class="top-ten__container">Top Books</h2>
-		<ul class="list-group top-ten__list">
-			<% Work.top_books.each do |work| %>
-			<li class="list-group-item">
-				<h4>
-					<%= link_to work.title, work_path(work.id) %>
-					<small class="top-ten__creator">by <%= work.creator %></small>
-				</h4>
-				<p># votes</p>
-			</li>
-			<% end %>
-		</ul>
-	</section>
-
-	<section class="top-ten__list-container">
-		<h2 class="top-ten__container">Top Albums</h2>
-		<ul class="list-group top-ten__list">
-			<% Work.top_albums.each do |work| %>
-			<li class="list-group-item">
-				<h4>
-					<%= link_to work.title, work_path(work.id) %>
-					<small class="top-ten__creator">by <%= work.creator %></small>
-				</h4>
-				<p># votes</p>
-			</li>
-			<% end %>
-		</ul>
-	</section>
-
-</section>
+  <section class='top-ten__container'>
+    <section class='top-ten__list-container'>
+      <%= render partial: './works/top_ten_list', locals: {category: 'movie'} %>
+    </section>
+    <section class='top-ten__list-container'>
+      <%= render partial: './works/top_ten_list', locals: {category: 'book'} %>
+    </section>
+    <section class='top-ten__list-container'>
+      <%= render partial: './works/top_ten_list' , locals: {category: 'album'} %>
+    </section>
+  </section>
+</main>
