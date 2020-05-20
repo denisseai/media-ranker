@@ -1,5 +1,6 @@
 class WorksController < ApplicationController
   before_action :find_work, only: [:show, :edit, :update, :destroy]
+  
   def index
     @works = Work.all    
   end
@@ -18,8 +19,7 @@ class WorksController < ApplicationController
       flash[:success] = "Successfully created #{@work.category} #{@work.id}"
       redirect_to work_path(id: @work.id)
     else
-      flash.now[:warning] = "A problem occurred: Could not create"
-      flash.now[:message] = @work.errors.full_messages[0]
+      flash.now[:error] = "A problem occurred: Could not create #{@work.category} "
       render :new, status: :bad_request
       return
     end
@@ -35,7 +35,7 @@ class WorksController < ApplicationController
       flash[:success] = "Successfully updated #{@work.category} #{@work.id}"
       redirect_to work_path(id: @work.id)
     else
-      flash.now[:warning] = "Unsuccessfull update of #{@work.title}"
+      flash.now[:error] = "Unsuccessfull update of #{@work.title}"
       render :edit, status: :bad_request
       return
     end

@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   def login
     username = params[:user][:username]
     user = User.find_by(username: username)
-    if username.nil?
+    if user.nil?
       flash[:error] = "A problem occurred: Could not log in username: can't be blank"
       redirect_to login_path
     else
@@ -36,10 +36,10 @@ class UsersController < ApplicationController
     if session[:user_id]
       user = User.find_by(id: session[:user_id])
       unless user.nil?
-        flash[:notice] = "Successfully logged out"
+        flash[:success] = "Successfully logged out"
         session[:user_id] = nil
       else 
-        flash[:notice] = "Error with log out"
+        flash[:error] = "Error with log out"
         session[:user_id] = nil
       end
     else 
