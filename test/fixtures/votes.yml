@@ -1,0 +1,24 @@
+one: 
+  user: nena
+  work: guardians
+two: 
+  user: mushu
+  work: guardians
+three:
+  user: max
+  work: guardians
+four: 
+  user: max
+  work: captain_select
+five: 
+  user: mushu
+  work: captain_select
+six: 
+  user: nena
+  work: captain_select
+seven:
+  user: denisse
+  work: guardians
+eight: 
+  user: nena
+  work: wake_up_cup
