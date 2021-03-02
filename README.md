@@ -1,4 +1,4 @@
-[Link to see in Heroku(https://ride-share-rails-ada.herokuapp.com/)
+[Link to see in Heroku](https://ride-share-rails-ada.herokuapp.com/)
 <img width="1437" alt="Screen Shot 2021-03-02 at 2 17 52 PM" src="https://user-images.githubusercontent.com/26889152/109722851-20aaad80-7b62-11eb-897d-730a1c3d06de.png">
 
 # Media Ranker
